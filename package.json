@@ -1,0 +1,57 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.7.0"
+  },
+  "scripts": {
+    "lint": "eslint src/*.mjs",
+    "dev": "cross-env-shell NODE_ENV=development nodemon --experimental-modules app.mjs",
+    "start": "cross-env-shell NODE_ENV=production node --experimental-modules app.mjs",
+    "stop": "taskkill /F /IM node.exe",
+    "push": "git add . && git commit -m fix && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihanizm56/api-for-loft-taxi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/mihanizm56/api-for-loft-taxi#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.5",
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "@hapi/joi": "^16.1.2",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "helmet": "^3.21.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongo-sanitize": "^1.0.1",
+    "mongoose": "^5.7.1",
+    "morgan": "^1.9.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
+  }
+}
