@@ -40,6 +40,7 @@ app.use("/", router);
 app.use((req, res, next) => {
 	next(createError(404));
 });
+// eslint-disable-next-line
 app.use((err, req, res, next) => {
 	res.locals.message = err.message;
 	res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -76,6 +77,7 @@ const startDB = () => {
 const startServerAndDB = serverPort => serverState => {
 	startDB().once("open", () => {
 		startServer(serverState, serverPort)
+			// eslint-disable-next-line
 			.then(server => {
 				console.log("app started on port", port);
 			})
