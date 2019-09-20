@@ -1,7 +1,3 @@
 {
-  "*.mjs": [
-      "node_modules/.bin/eslint --max-warnings=3000",
-      "prettier --write",
-      "git add"
-    ]
+  "linters": "eslint src/*.mjs"
 }
