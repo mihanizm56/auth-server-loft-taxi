@@ -1,6 +1,6 @@
 {
   "*.mjs": [
-      "node_modules/.bin/eslint .src --max-warnings=3000",
+      "node_modules/.bin/eslint ./src --max-warnings=3000",
       "prettier --write",
       "git add"
     ]
