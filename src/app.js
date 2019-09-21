@@ -1,20 +1,29 @@
-import dotenv from "dotenv";
-import os from "os";
-import cluster from "cluster";
-import createError from "http-errors";
-import helmet from "helmet";
-import mongoose from "mongoose";
-import cors from "cors";
-import express from "express";
-import path from "path";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
-import bodyParser from "body-parser";
-import http_server from "http";
-import rateLimit from "express-rate-limit";
-import router from "./src/routes/root.mjs";
-import { port, dbURL } from "./src/services/variables/index.mjs";
-import "./src/services/db-listeners/index.mjs";
+// register events
+require("./utils/registry/registry-events");
+
+// event listeners
+require("./services/core/core");
+require("./services/database/database");
+require("./services/validation/validation");
+
+// db events
+require("./utils/db-listeners/db-listeners");
+
+const dotenv = require("dotenv");
+const os = require("os");
+const cluster = require("cluster");
+const createError = require("http-errors");
+const helmet = require("helmet");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const express = require("express");
+const path = require("path");
+const logger = require("morgan");
+const bodyParser = require("body-parser");
+const http_server = require("http");
+const rateLimit = require("express-rate-limit");
+const router = require("./routes/router.js");
+const { port, dbURL } = require("./utils/variables/index.js");
 
 /// prepare config for server
 dotenv.config();
@@ -33,10 +42,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(process.cwd(), "public")));
 
-app.use("/", router);
+app.use("/login", router);
 app.use((req, res, next) => {
 	next(createError(404));
 });
@@ -64,6 +72,7 @@ const startDB = () => {
 	const options = {
 		useNewUrlParser: true,
 		useFindAndModify: false,
+		useUnifiedTopology: true,
 	};
 
 	mongoose.Promise = global.Promise;

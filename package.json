@@ -1,15 +1,23 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "server",
   "main": "index.js",
   "engines": {
     "node": ">=8.7.0"
   },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./config/git/commitizen.js"
+    }
+  },
   "scripts": {
-    "lint": "eslint src/*.mjs",
-    "dev": "cross-env-shell NODE_ENV=development nodemon --experimental-modules app.mjs",
-    "start": "cross-env-shell NODE_ENV=production node --experimental-modules app.mjs",
+    "lint": "lint-staged",
+    "dev": "cross-env-shell NODE_ENV=development nodemon ./src/app.js",
+    "start": "cross-env-shell NODE_ENV=production node app.js",
     "stop": "taskkill /F /IM node.exe",
     "push": "git add . && git commit -m fix && git push"
   },
@@ -22,7 +30,9 @@
   "license": "ISC",
   "homepage": "https://github.com/mihanizm56/api-for-loft-taxi#readme",
   "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
     "babel-eslint": "^10.0.3",
+    "cz-customizable": "^6.2.0",
     "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.3.0",
@@ -37,9 +47,10 @@
   },
   "dependencies": {
     "@hapi/joi": "^16.1.2",
+    "@nauma/eventemitter": "^1.0.7",
     "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
+    "cross-env": "^6.0.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.0.0",

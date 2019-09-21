@@ -1,8 +1,12 @@
 {
+    "parser": "babel-eslint",
     "ecmaFeatures": {
-        "modules": true,
-        "spread" : true,
-        "restParams" : true
+        "ecmaVersion": 7,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "arrowFunctions": true,
+        "defaultParams": true
+      }
     },
     "env" : {
         "browser" : true,
