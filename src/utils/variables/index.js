@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 let dbURL;
 dotenv.config();
 
-module.exports.port = process.env.PORT || 8080;
+module.exports.port = process.env.SERVER_PORT || 8080;
 
 switch (process.env.NODE_ENV) {
 	case "development":
