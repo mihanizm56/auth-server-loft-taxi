@@ -19,7 +19,7 @@
     "dev": "cross-env-shell NODE_ENV=development nodemon ./src/app.js",
     "start": "cross-env-shell NODE_ENV=production node app.js",
     "stop": "taskkill /F /IM node.exe",
-    "push": "git add . && git cz && git push"
+    "push": "git add . && npm run lint && git cz && git push"
   },
   "repository": {
     "type": "git",
