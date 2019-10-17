@@ -12,7 +12,7 @@ const router = express.Router();
 router.post("/", validateUserDataCtrl);
 router.put("/", addNewUserCtrl);
 router.post("/refresh", refreshToken);
-router.get("/token", authToken);
+router.post("/token", authToken);
 router.get("/public", sendPublicKey);
 
 module.exports = router;

@@ -39,6 +39,9 @@ module.exports.refreshToken = async (req, res) => {
 module.exports.authToken = async (req, res) => {
 	const authorizationHeader = req.headers.authorization;
 	const token = authorizationHeader.split(" ")[1];
+
+	console.log("authorizationHeader", authorizationHeader);
+	console.log("token", token);
 	try {
 		const result = await CORE_EVENTS.emit("users/token_verify", {
 			token,

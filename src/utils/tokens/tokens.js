@@ -6,6 +6,9 @@ dotenv.config();
 const PRIVATE_KEY_ACCESS = process.env.JWT_SECRET_ACCESS;
 const PRIVATE_KEY_REFRESH = process.env.JWT_SECRET_REFRESH;
 
+const PUBLIC_KEY_ACCESS = process.env.JWT_PUBLIC_ACCESS;
+const PUBLIC_KEY_REFRESH = process.env.JWT_PUBLIC_REFRESH;
+
 const timeAccessTokenExpiresSeconds = process.env.TIME_TO_EXPIRE_ACCESS;
 const timeRefreshTokenExpiresSeconds = process.env.TIME_TO_EXPIRE_REFRESH;
 
@@ -64,7 +67,7 @@ module.exports.refreshTokenVerify = token =>
 		try {
 			jwt.verify(
 				token,
-				PRIVATE_KEY_REFRESH,
+				PUBLIC_KEY_REFRESH,
 				{ algorithms: ["RS256"] },
 				(error, decoded) => {
 					if (
@@ -99,7 +102,7 @@ module.exports.accessTokenVerify = token =>
 		try {
 			jwt.verify(
 				token,
-				PRIVATE_KEY_ACCESS,
+				PUBLIC_KEY_ACCESS,
 				{ algorithms: ["RS256"] },
 				(error, decoded) => {
 					if (
